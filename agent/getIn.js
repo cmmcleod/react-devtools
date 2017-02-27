@@ -20,6 +20,9 @@ function getIn(base, path) {
       if (obj.hasOwnProperty(attr)) {
         return obj[attr];
       }
+      if (typeof obj.get === 'function') {
+        return obj.get(attr);
+      }
       if (typeof obj[Symbol.iterator] === 'function') {
         // Convert iterable to array and return array[index]
         return [...obj][attr];
